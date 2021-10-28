@@ -1,13 +1,6 @@
-
-
-
-
-
-
-
-
-
-
+#Equipo 12
+#Isaac Jacinto Ruiz A01658578
+#Klaus Manuel Cedillo Arreondo A01653257
 
 from turtle import *
 from random import randrange
@@ -34,13 +27,22 @@ def inside(head):
 
 def move():
     "Move snake forward one segment."
-    head = snake[-1].copy()
-    head.move(aim)
-
+    #head = snake[-1].copy()
+    #head.move(aim)
+    head = snake[-1].copy() # posición antes de moverse
+    head.move(aim) # posición después de movimiento
+    food.move(vector(random.choice([-10, 0, 10]), random.choice([-10, 0, 10]))) # asignación de posiciones random comida
+    
+    
+    #señal rojo si choca
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
         update()
         return
+    #Limites comida
+    elif not inside(food):
+        food.x = random.randrange(-15, 15) * 10
+        food.y = random.randrange(-15, 15) * 10
 
     snake.append(head)
 
